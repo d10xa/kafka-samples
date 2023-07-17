@@ -28,7 +28,7 @@ public abstract class KafkaTestBase {
             );
 
     public static GenericContainer<?> kafkaTopicsCreate = new GenericContainer<>(
-            DockerImageName.parse("bitnami/kafka:3.5.0")
+            DockerImageName.parse("confluentinc/cp-kafka")
     );
 
     // Uncomment `kafkaUi.start();` to enable KAFKA UI
@@ -69,7 +69,7 @@ public abstract class KafkaTestBase {
                 "for topic in $topics_to_create\n" +
                 "do\n" +
                 "  echo create $topic\n" +
-                "  /opt/bitnami/kafka/bin/kafka-topics.sh \\\n" +
+                "  kafka-topics \\\n" +
                 "  --bootstrap-server $KAFKA_HOST:$KAFKA_PORT \\\n" +
                 "  --create \\\n" +
                 "  --if-not-exists \\\n" +
